@@ -1,0 +1,6 @@
+.calendarStyle {
+    width: 100%;
+}
+.pac-container {
+    z-index: 1301 !important;
+}
