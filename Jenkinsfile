@@ -6,7 +6,7 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-       git 'https://github.com/djo95/jenkins-demo.git'
+       git 'https://github.com/djo95/rencar.git'
         bat 'npm install'
       }
     }

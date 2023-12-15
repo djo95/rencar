@@ -121,9 +121,9 @@ exports.readUsers = async (req, res) => {
 
 exports.addNewUser = async (req, res) => {
   try {
-    const user = req.body;
-    const found = await User.findOne(user.email);
-    console.log(found)
+    const { email } = req.body;
+
+    const found = await User.findOne({ email });
     if (found) {
       return res
         .status(400)
@@ -135,14 +135,17 @@ exports.addNewUser = async (req, res) => {
       numbers: true,
     });
 
-    const newUser = new User({ ...req.body, role: "client" });
     const saltRounds = 10;
     const salt = bcrypt.genSaltSync(saltRounds);
     const hashedPassword = bcrypt.hashSync(password, salt);
-    newUser.password = hashedPassword;
-    await newUser.save();
-    res.status(200).send({ msg: "User added", newUser});
+    const newUser = new User({
+      ...req.body,
+      password: hashedPassword,
+      role: "client",
+    });
 
+    await newUser.save();
+    res.status(200).send({ msg: "User added", newUser });
   } catch (error) {
     res.status(500).send({ errors: [{ msg: "Could not read users list" }] });
   }

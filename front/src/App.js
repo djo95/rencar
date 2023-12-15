@@ -57,7 +57,9 @@ export default function App() {
   const [onMouseEnter, setOnMouseEnter] = useState(false);
   const [rtlCache, setRtlCache] = useState(null);
   const { pathname } = useLocation();
-  const isLoading = useSelector((state) => state.VoitureReducer.isLoading);
+  const isLoadingVoiture = useSelector((state) => state.VoitureReducer.isLoading);
+  const isLoadingAuth = useSelector((state) => state.AuthReducer.isLoading);
+
   const { showNotification, message, error } = useSelector((state) => state.NotificationReducer);
   console.log(showNotification);
   const dispatchRedux = useDispatch();
@@ -172,7 +174,7 @@ export default function App() {
       <CssBaseline />
       {layout === "dashboard" && (
         <>
-          <MUIBackdrop isLoading={isLoading} />
+          <MUIBackdrop className={"muibackdrop"} isLoading={isLoadingVoiture || isLoadingAuth} />
           <Sidenav
             color={sidenavColor}
             brand={(transparentSidenav && !darkMode) || whiteSidenav ? brandDark : brandWhite}

@@ -7,6 +7,7 @@ import {
   GETALLUSERS,
   GETONEUSER,
   ADDUSER,
+  IS_LOADING,
 } from "../actionTypes/AuthTypes";
 
 const intialState = {
@@ -15,6 +16,7 @@ const intialState = {
   users: [],
   oneUser: {},
   newUser: {},
+  isLoading: false,
 };
 
 const AuthReducer = (state = intialState, action) => {
@@ -44,6 +46,8 @@ const AuthReducer = (state = intialState, action) => {
 
     case ADDUSER:
       return { ...state, newUser: action.payload.newUser };
+    case IS_LOADING:
+      return { ...state, isLoading: action.payload };
     default:
       return state;
   }

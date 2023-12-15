@@ -26,7 +26,7 @@ import Autocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
 import { getAllUsers } from "../../redux/actions/AuthActions";
 import MDAvatar from "components/MDAvatar";
-import { Box } from "@mui/material";
+import { Box, Button } from "@mui/material";
 import { DateRange } from "react-date-range";
 import Switch from "@mui/material/Switch";
 import ModalNewUser from "components/modalNewUser";
@@ -69,6 +69,8 @@ const addReservation = (props) => {
     const options = users.map((item, key) => {
       return { label: item.name, id: item._id };
     });
+
+    options.unshift({ label: "button", id: "0" });
 
     setListUsers(options);
     setListCars(cars);
@@ -168,20 +170,45 @@ const addReservation = (props) => {
                   <Grid item xs={6}>
                     <Autocomplete
                       onChange={(e, newValue) => {
-                        handleChange("owner", newValue.id);
+                        if (newValue !== null) {
+                          handleChange("owner", newValue.id);
+                        } else {
+                          handleChange("owner", "");
+                        }
                       }}
                       disablePortal
+                      getOptionSelected={(option, value) => option.id === value.id}
                       id="combo-box-demo"
                       options={listUsers}
                       renderInput={(params, option) => <TextField {...params} label="Clients" />}
+                      renderOption={(props, option) =>
+                        option.label === "button" ? (
+                          <Box component={"li"} {...props}>
+                            <Button onClick={() => setOpenModal(!openModal)}>
+                              Ajouter un nouveau client
+                            </Button>
+                          </Box>
+                        ) : (
+                          <Box component={"li"} {...props}>
+                            <MDTypography item variant="h6">
+                              {option.label}
+                            </MDTypography>
+                          </Box>
+                        )
+                      }
                     />
                   </Grid>
                   <Grid item xs={6}>
                     <Autocomplete
                       onChange={(e, newValue) => {
                         console.log(newValue);
-                        handleChange("car", newValue._id);
-                        setPrixVoiture(newValue.prix);
+                        if (newValue !== null) {
+                          handleChange("car", newValue._id);
+                          setPrixVoiture(newValue.prix);
+                        } else {
+                          handleChange("car", "");
+                          setPrixVoiture(0);
+                        }
                       }}
                       groupBy={(option) => option.marque}
                       getOptionLabel={(option) => option.modele}

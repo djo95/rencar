@@ -4,12 +4,14 @@ import {
   FAIL,
   GETALLUSERS,
   GETONEUSER,
+  IS_LOADING,
   LOGIN,
   LOGOUT,
   REGISTER,
 } from "../actionTypes/AuthTypes";
 import axios from "axios";
 import { handleErrors } from "./ErrorActions";
+import { ShowNotification } from "./NotificationActions";
 
 const baseurl = process.env.REACT_APP_BASEURL;
 
@@ -153,21 +155,28 @@ export const deleteProfile = (id, navigate) => async (dispatch) => {
   }
 };
 
-export const addNewUser = (newUser) => async (dispatch) => {
+export const addNewUser = (newUser, setModal) => async (dispatch) => {
   try {
+    dispatch({
+      type: IS_LOADING,
+      payload: true,
+    });
     console.log(newUser);
 
-    const res = await axios.post(baseurl + "/api/user/addUser", newUser);
+    await axios.post(baseurl + "/api/user/addUser", newUser).then((res) => {
+      if (res) {
+        console.log(res);
+        dispatch(ShowNotification(true, "votre client a ete ajouter avec success", false));
+        dispatch(getAllUsers());
+        setModal();
+        dispatch({
+          type: IS_LOADING,
+          payload: false,
+        });
+      }
+    });
     console.log(res);
-    dispatch({
-      type: ADDUSER,
-      payload: res.data,
-    });
-
-    navigate("/dashboard");
   } catch (error) {
-    error.response.data.errors.forEach((element) => {
-      dispatch(handleErrors(element.msg));
-    });
+    console.log(error);
   }
 };

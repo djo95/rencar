@@ -1,6 +1,12 @@
 .calendarStyle {
-    width: 100%;
+  width: 100%;
 }
 .pac-container {
-    z-index: 1301 !important;
+  z-index: 1301 !important;
+}
+.suggestions-container {
+    z-index: 3000;
+}
+.muibackdrop {
+    z-index: 1800;
 }

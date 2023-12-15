@@ -6,3 +6,4 @@ export const LOGOUT = "LOGOUT";
 export const GETALLUSERS = "GETALLUSERS";
 export const GETONEUSER = "GETONEUSER";
 export const ADDUSER = "ADDUSER";
+export const IS_LOADING = "IS_LOADING";
