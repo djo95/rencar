@@ -7,7 +7,7 @@ pipeline {
     stage('Build') {
       steps {
        git 'https://github.com/djo95/rencar.git'
-        bat 'npm install'
+       bat 'docker compose up' 
       }
     }
   }
