@@ -11,3 +11,13 @@
 2023.12.15 16:32:16 WARN  app[][startup] ####################################################################################################################
 2023.12.15 16:32:20 INFO  app[][o.s.a.SchedulerImpl] Process[ce] is up
 2023.12.15 16:32:20 INFO  app[][o.s.a.SchedulerImpl] SonarQube is operational
+2023.12.15 17:12:49 INFO  app[][o.s.a.SchedulerImpl] Stopping SonarQube
+2023.12.15 17:12:49 INFO  app[][o.s.a.SchedulerImpl] Sonarqube has been requested to stop
+2023.12.15 17:12:49 INFO  app[][o.s.a.SchedulerImpl] Stopping [Compute Engine] process...
+2023.12.15 17:12:50 INFO  app[][o.s.a.SchedulerImpl] Process[Compute Engine] is stopped
+2023.12.15 17:12:50 INFO  app[][o.s.a.SchedulerImpl] Stopping [Web Server] process...
+2023.12.15 17:12:51 INFO  app[][o.s.a.SchedulerImpl] Process[Web Server] is stopped
+2023.12.15 17:12:51 INFO  app[][o.s.a.SchedulerImpl] Stopping [ElasticSearch] process...
+2023.12.15 17:12:51 INFO  app[][o.s.a.SchedulerImpl] Process[ElasticSearch] is stopped
+2023.12.15 17:12:51 WARN  app[][o.s.a.p.AbstractManagedProcess] Process exited with exit value [ElasticSearch]: 143
+2023.12.15 17:12:51 INFO  app[][o.s.a.SchedulerImpl] SonarQube is stopped
