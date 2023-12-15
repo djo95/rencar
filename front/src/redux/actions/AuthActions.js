@@ -26,7 +26,7 @@ export const register = (newUser, navigate) => async (dispatch) => {
       payload: res.data,
     });
 
-    navigate("/dashboard");
+    navigate("/voiture");
   } catch (error) {
     error.response.data.errors.forEach((element) => {
       dispatch(handleErrors(element.msg));
@@ -41,7 +41,7 @@ export const login = (logedUser, navigate) => async (dispatch) => {
       type: LOGIN,
       payload: res.data,
     });
-    navigate("/profile");
+    navigate("/voitures");
   } catch (error) {
     dispatch({
       type: FAIL,

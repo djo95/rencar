@@ -71,7 +71,7 @@ function Reservations() {
               </MDBox>
             </Card>
           </Grid>
-          <Grid item xs={12}>
+          {/*<Grid item xs={12}>
             <Card>
               <MDBox
                 mx={2}
@@ -97,7 +97,7 @@ function Reservations() {
                 />
               </MDBox>
             </Card>
-          </Grid>
+          </Grid>*/}
         </Grid>
       </MDBox>
       <Footer />
